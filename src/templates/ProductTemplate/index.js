@@ -10,6 +10,7 @@ export const query = graphql`
       description
       id
       images {
+        id
         localFile {
           childImageSharp {
             fluid(maxWidth: 400) {

@@ -1,8 +1,19 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 
-const ProductTemplate = props => {
-  console.log(props);
-  return <h1>Product</h1>;
+export const query = graphql`
+  query ProductQuery($shopifyId: String) {
+    shopifyProduct(shopifyId: { eq: $shopifyId }) {
+      title
+      description
+      id
+    }
+  }
+`;
+
+const ProductTemplate = ({ data }) => {
+  console.log(data.shopifyProduct);
+  return <h1>{data.shopifyProduct.title}</h1>;
 };
 
 export default ProductTemplate;

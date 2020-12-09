@@ -8,7 +8,6 @@ export const query = graphql`
     shopifyProduct(shopifyId: { eq: $shopifyId }) {
       title
       description
-      id
       images {
         id
         localFile {

@@ -3,9 +3,12 @@ import Image from 'gatsby-image';
 import { ImageThumbnailWrapper } from './styles';
 
 const ImageThumbnail = ({ isActive, onClick, image }) => {
+  const handleClick = () => {
+    onClick(image);
+  };
   return (
-    <ImageThumbnailWrapper onClick={() => console.log('click')}>
-      <Image fluid={image} />
+    <ImageThumbnailWrapper onClick={handleClick} isActive={isActive}>
+      <Image fluid={image.localFile.childImageSharp.fluid} />
     </ImageThumbnailWrapper>
   );
 };

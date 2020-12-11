@@ -8,12 +8,21 @@ export const Grid = styled.section`
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
 
-    > div:first-child {
+    div:first-child {
       order: 2;
     }
 
-    > div:last-child {
+    div:last-child {
       order: 1;
     }
+  }
+`;
+
+export const SelectWrapper = styled.div`
+  margin-top: 40px;
+
+  strong {
+    display: block;
+    margin-bottom: 8px;
   }
 `;

@@ -42,9 +42,8 @@ const ProductTemplate = ({ data }) => {
     getProductById(shopifyId).then(result => {
       setProduct(result);
       setSelectedVariant(
-        result.variants.find(({ id }) => id === variantId || result.variants[0])
+        result.variants.find(({ id }) => id === variantId) || result.variants[0]
       );
-      console.log(variantId);
     });
   }, [getProductById, setProduct, data.shopifyProduct, variantId]);
 
@@ -82,7 +81,10 @@ const ProductTemplate = ({ data }) => {
           )}
         </div>
         <div>
-          <ImageGallery images={data.shopifyProduct.images} />
+          <ImageGallery
+            selectedVariantImageId={selectedVariant?.image.id}
+            images={data.shopifyProduct.images}
+          />
         </div>
       </Grid>
     </Layout>

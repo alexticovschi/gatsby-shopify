@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'gatsby-image';
 import ImageThumbnail from './ImageThumbnail';
 import { ImageGalleryWrapper } from './styles';
 
-const ImageGallery = ({ images }) => {
-  const [activeImageThumbnail, setActiveImageThumbnail] = useState(images[0]);
+const ImageGallery = ({ images, selectedVariantImageId }) => {
+  const [activeImageThumbnail, setActiveImageThumbnail] = useState(
+    images.find(({ id }) => id === selectedVariantImageId) || images[0]
+  );
+
+  useEffect(() => {
+    setActiveImageThumbnail(
+      images.find(({ id }) => id === selectedVariantImageId) || images[0]
+    );
+  }, [selectedVariantImageId, images, setActiveImageThumbnail]);
 
   const handleClick = image => {
     setActiveImageThumbnail(image);

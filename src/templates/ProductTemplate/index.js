@@ -66,16 +66,18 @@ const ProductTemplate = ({ data }) => {
           <p>{data.shopifyProduct.description}</p>
           {product?.availableForSale && !!selectedVariant && (
             <>
-              <SelectWrapper>
-                <strong>Variant</strong>
-                <select value={variantId} onChange={handleVariantChange}>
-                  {product?.variants.map(v => (
-                    <option key={v.id} value={v.id}>
-                      {v.title}
-                    </option>
-                  ))}
-                </select>
-              </SelectWrapper>
+              {product?.variants.length > 1 && (
+                <SelectWrapper>
+                  <strong>Variant</strong>
+                  <select value={variantId} onChange={handleVariantChange}>
+                    {product?.variants.map(v => (
+                      <option key={v.id} value={v.id}>
+                        {v.title}
+                      </option>
+                    ))}
+                  </select>
+                </SelectWrapper>
+              )}
               {!!selectedVariant && <Price>£{selectedVariant?.price}</Price>}
             </>
           )}

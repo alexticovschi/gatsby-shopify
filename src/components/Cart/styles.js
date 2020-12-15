@@ -4,8 +4,8 @@ export const CartWrapper = styled.div`
   margin-left: auto;
   display: flex;
 
-  div:last-child {
+  span {
     padding-left: 8px;
-    margin: auto 0;
+    margin-left: auto;
   }
 `;

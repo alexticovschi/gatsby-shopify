@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { CartWrapper } from './styles';
 import { FaShoppingCart } from 'react-icons/fa';
 import CartContext from 'context/CartContext';
+import { Link } from 'gatsby';
 
 const Cart = () => {
   const { checkout } = useContext(CartContext);
-  console.log(checkout.lineItems);
 
   let totalQuantity = 0;
 
@@ -17,10 +17,14 @@ const Cart = () => {
 
   return (
     <CartWrapper>
-      <FaShoppingCart size="1.5em" />
       <div>
-        {totalQuantity} {totalQuantity > 1 ? ' items' : 'item'} / £
-        {checkout?.totalPrice || '0.00'}
+        <Link to="/cart">
+          <FaShoppingCart size="1.5em" />
+          <span>
+            {totalQuantity} {totalQuantity > 1 ? ' items' : 'item'} / £
+            {checkout?.totalPrice || '0.00'}
+          </span>
+        </Link>
       </div>
     </CartWrapper>
   );

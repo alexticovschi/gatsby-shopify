@@ -6,3 +6,4 @@ export * from './Input';
 export * from './Button';
 export * from './Header';
 export * from './Cart';
+export * from './CartContent';

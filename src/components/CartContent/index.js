@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
 import CartContext from 'context/CartContext';
 import { CartHeader, CartItem, CartFooter } from './styles';
+import QuantityAdjuster from '../QuantityAdjuster';
 
 const CartContent = () => {
-  const { checkout } = useContext(CartContext);
+  const { checkout, updateLineItem } = useContext(CartContext);
+
+  const handleAdjustQuantity = ({ quantity, variantId }) => {
+    updateLineItem({ quantity, variantId });
+  };
 
   return (
     <section>
@@ -14,21 +19,29 @@ const CartContent = () => {
         <div>Quantity</div>
         <div>Amount</div>
       </CartHeader>
-      {checkout.lineItems?.map(lineItem => (
-        <CartItem key={lineItem.variant.id}>
-          <div>
-            <div>{lineItem.title}</div>
+      {checkout &&
+        checkout.lineItems?.map(lineItem => (
+          <CartItem key={lineItem.variant.id}>
             <div>
-              {lineItem.variant.title === 'Default Title'
-                ? null
-                : lineItem.variant.title}
+              <div>{lineItem.title}</div>
+              <div>
+                {lineItem.variant.title === 'Default Title'
+                  ? null
+                  : lineItem.variant.title}
+              </div>
             </div>
-          </div>
-          <div>£{lineItem.variant.price}</div>
-          <div>{lineItem.quantity}</div>
-          <div>£{(lineItem.quantity * lineItem.variant.price).toFixed(2)}</div>
-        </CartItem>
-      ))}
+            <div>£{lineItem.variant.price}</div>
+            <div>
+              <QuantityAdjuster
+                item={lineItem}
+                onAdjust={handleAdjustQuantity}
+              />
+            </div>
+            <div>
+              £{(lineItem.quantity * lineItem.variant.price).toFixed(2)}
+            </div>
+          </CartItem>
+        ))}
       <CartFooter>
         <div>
           <strong>Total: </strong>

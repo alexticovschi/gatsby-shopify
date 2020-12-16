@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { QuantityAdjusterWrapper, AdjusterButton } from './styles';
 
 const QuantityAdjuster = ({ item, onAdjust }) => {
